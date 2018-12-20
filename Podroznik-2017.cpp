@@ -106,7 +106,7 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
 
     // sprawdzenie wyniku poprzedniej rozgrywki
 
-    if(wybory1[poprzednie] > wybory2[poprzednie]){ //dziala
+    if(wybory1[poprzednie] > wybory2[poprzednie]){
         czy_wygral = true;
     }else{
         czy_wygral = false;
@@ -114,7 +114,7 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
 
     // liczba wygranych i przegranych ostatnich gier przeciwnika
     
-    for(int i=liczba_krokow; i > 0; i--){ //dziala
+    for(int i=liczba_krokow; i > 0; i--){
         if(wybory2[poprzednie - i] > max_wartosc){
             max_wartosc = wybory2[poprzednie - i];
         }
@@ -126,7 +126,7 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
     }
 
     // sprawdzenie jaki rozmiar powinna miec tablica dla danego przypadku
-    if(wygranych > przegranych){ //dziala
+    if(wygranych > przegranych){
         rozmiar_tabeli = wygranych;
     }else{
         rozmiar_tabeli = przegranych;
@@ -197,7 +197,6 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
 
     }
     else{
-// Przerobic co ma robic gdy przegrywa, sprawdzic jak zachowuje sie przeciwnik gdy przegrywa
         for(int i = liczba_krokow; i >= 0; i--){
             if(wybory1[poprzednie - i] <= wybory2[poprzednie - i]){
 
@@ -222,9 +221,9 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
                 skok[i] = historia_krokow[i][2] - historia_krokow[i][0];
             }
         }
-        cout << "\nTaka sama: " << taka_sama << endl;
-        cout <<   "Wieksza:   " << wieksza << endl;
-        cout <<   "Mniejsza:  " << mniejsza << endl;
+        // cout << "\nTaka sama: " << taka_sama << endl;
+        // cout <<   "Wieksza:   " << wieksza << endl;
+        // cout <<   "Mniejsza:  " << mniejsza << endl;
         skok_max = skok[0];
         for(int i = 0; i < step; i++){
             if(skok_max > skok[i] && skok[i] >= 0){
