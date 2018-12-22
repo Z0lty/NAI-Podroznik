@@ -85,11 +85,11 @@ void game(int choice_bot1, int choice_bot2, int *w)
 int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybory2[])
 {
     if(round == 0){
-        return 180;
+        return (180 + (rand() % (int)(300 - 180 + 1)));
     }
 
     int liczba_krokow = 10;
-    
+
     if(round < liczba_krokow){
         liczba_krokow = round;
     }
@@ -113,7 +113,7 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
     }
 
     // liczba wygranych i przegranych ostatnich gier przeciwnika
-    
+
     for(int i=liczba_krokow; i > 0; i--){
         if(wybory2[poprzednie - i] > max_wartosc){
             max_wartosc = wybory2[poprzednie - i];
@@ -132,7 +132,6 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
         rozmiar_tabeli = przegranych;
     }
 
-    
     int analiza_krokow [rozmiar_tabeli];
     int historia_krokow [rozmiar_tabeli][3];
     int step = 0;
@@ -221,9 +220,7 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
                 skok[i] = historia_krokow[i][2] - historia_krokow[i][0];
             }
         }
-        // cout << "\nTaka sama: " << taka_sama << endl;
-        // cout <<   "Wieksza:   " << wieksza << endl;
-        // cout <<   "Mniejsza:  " << mniejsza << endl;
+
         skok_max = skok[0];
         for(int i = 0; i < step; i++){
             if(skok_max > skok[i] && skok[i] >= 0){
@@ -240,7 +237,7 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
         if(mniejsza >= wieksza && mniejsza >= taka_sama){
             wybor = wybory2[poprzednie] - skok_max - obnizona_liczba;
         }
-        
+
         if(wybor>=max_wartosc){
             wybor = max_wartosc - obnizona_liczba;
         }
@@ -250,23 +247,93 @@ int bot_low(int points_bot1, int points_bot2, int round, int wybory1[], int wybo
         }else{
             return 180;
         }
-
     }
 }
 
 int bot_high(int points_bot1, int points_bot2, int round, int wybory1[], int wybory2[])
 {
-    int wybor = 0;
+    // int wybor = 0;
+    // if(wybory1[round -1]<wybory2[round -1]){
+    //     wybor = wybory1[round -1] - 10;
+    // }else{
+    //     wybor = wybory2[round -1] - 10;
+    // }
+    // if(wybor >= 180){
+    //     return wybor;
+    // }else{
+    //     return 250;
+    // }
 
-    if(wybory1[round -1]<wybory2[round -1]){
-        wybor = wybory1[round -1] - 10;
-    }else{
-        wybor = wybory2[round -1] - 10;
-    }
-    if(wybor >= 180){
-        return wybor;
-    }else{
-        return 250;
-    }
+    // Szymon Cichocki
+    // int rand1 = rand() % 15 + 1;
+    // if(round<500){
+    //     return 180;
+    // }else{
+    //    if(wybory1[round -1]>=wybory2[round -1]){
+    //     return wybory2[round -1] - 2 * rand1;
+    //    }
+    //    else(wybory1[round -1]<=wybory2[round -1]);{
+    //         return wybory1[round -1] + 2 * rand1;     
+    //     }
+    // }
+
+    // Typowy rand
+    // int min = 180;
+    // int max = 300;
+    // int num = (min + (rand() % (int)(max - min + 1)));
+    // return num;
+
+    // int var = wybory2[round - 1];
+    // if(var-2 <= 180){
+    //     return 180;
+    // }else{
+    //     return var -2;
+    // }
+
+    // Rafał Ochotny
+    // int variable = wybory2[round-1];
+    // int num = (1 + (rand() % (int)(5 - 1 + 1)));
+    // if(variable <=180 || variable >= 300)
+    //     return (180 + (rand() % (int)(300 - 180 + 1)));
+    // if(variable-num <= 180)
+    //     return 180;
+    // else
+    //     return variable-num;
+
+
+    // Łukasz Klim
+    // int roznica_poprzednie_wybory;
+    // int roznica_wczesniejsze_wybory;
+ 
+    // if (round > 2) {
+    //     roznica_poprzednie_wybory = wybory2[round - 1] - wybory1[round - 1];
+    //     roznica_wczesniejsze_wybory = wybory2[round - 2] - wybory1[round - 2];
+    // } 
+    // if (round == 0) {
+    //     return 180;
+    // } 
+    //     if (round % 5 == 0) {
+    //     return 300 - (rand() %100);
+    // } 
+    // if (round > 4) {
+    //     if (wybory2[round - 1] == 180 && wybory2[round - 2] == 180
+    //          && wybory2[round - 2] == 180 ) {
+    //             return 180;
+    //          }
+    // }
+    // if (round > 1) {
+    //     if (wybory2[round - 1] > 299 && wybory2[round - 2] > 299) {
+    //         return 295;
+    //     }
+    // }
+    // if (wybory2[round - 1] < 300 && wybory2[round - 1] > 181) {
+    //     return wybory2[round - 1] - 2;
+    // } 
+    // if (roznica_poprzednie_wybory == roznica_wczesniejsze_wybory) {
+    //     if (wybory1[round - 1] > 190) {
+    //         return wybory1[round - 1] - 10;
+    //     }
+    // } 
+    // return 180;
 }
 
